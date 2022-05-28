@@ -1,0 +1,2 @@
+# meus_pedidos
+Ess aplicativo móvel(Android) tem como objetivo ajudar pequenos empreendedores a gerenciar os pedidos do seu negócio, deixando assim seu dia mais organizado e sem grande dificuldades para identificar quais pedidos devem ser inicializados. O APP será chamado de Meus Pedidos, e ele permite que o usuário possa adicionar, editar, marcar como concluído e até mesmo remover o pedido caso queira.
