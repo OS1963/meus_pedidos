@@ -1,13 +1,13 @@
+//Tela inicial
 import React, { useState } from 'react';
 import {View, Text, Button, TouchableOpacity, Image, Modal} from 'react-native';
 import estilo from '../estilos/estilo';
 
 
 export default function({navigation}){
-    const [visivel, setVisivel] = useState(false)
-
+    
     return(
-      <View style={{flex:1, alignItems:'center', justifyContent:'center',}}>
+      <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
         <Text>Tela Inicial</Text>
         {/* para navegar entre as telas pode-se adicionar botões, links, toutchbole  */}
         <Button
@@ -16,17 +16,11 @@ export default function({navigation}){
         onPress={()=>navigation.navigate('Pedidos')}/>
   
          {/* inserindo botão para poder cadastrar */}
+
+
          <Button
         title='Cadastrar Pedidos'
         onPress={()=>navigation.navigate('Cadastrar')}/>
-        <View style={estilo.vermais}>
-        <TouchableOpacity style={estilo.vermais}
-        onPress={()=>{setVisivel(true)}}
-        >
-            <Image  source={require('../assets/vermais.png')} style={estilo.verMaisImagem}/>
-        </TouchableOpacity>
-
-        </View>
       </View>
     )
   }

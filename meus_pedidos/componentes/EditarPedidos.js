@@ -1,7 +1,8 @@
+//Para editar pedidos
 import React from 'react';
 import {View, Text} from 'react-native';
 
-export default function({navigation}){
+export default function EditarPedidos({navigation}){
     return(
       <View>
         <Text>
@@ -10,4 +11,5 @@ export default function({navigation}){
       </View>
     )
   }
+  
   
