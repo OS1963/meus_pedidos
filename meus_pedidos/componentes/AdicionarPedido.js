@@ -4,7 +4,7 @@ import {View, Text, Button, TextInput, StyleSheet} from 'react-native'
 import {Entypo, Feather, AntDesign} from '@expo/vector-icons'
 
 
-export default function AdicionarPedido(){
+export default function AdicionarPedido({navigation}){
   // criando os estados
   const [nome, setNome] = useState(null)
   const [telefone, setTelefone] = useState(null)
@@ -22,25 +22,26 @@ export default function AdicionarPedido(){
           onChangeText={value => setNome(value)}
           placeholder='Digite o nome...'/>
 
-          <Text>Telefone</Text>
+          <Text style={estilo.txt}>Telefone</Text>
           <TextInput
           style={estilo.inputs}
           onChangeText={value => setTelefone(value)}
+          keyboardType='numeric'
           placeholder='Digite o telefone...'/>
 
-          <Text>Serviço</Text>
+          <Text style={estilo.txt}>Serviço</Text>
           <TextInput
           style={estilo.inputs}
           onChangeText={value => setServico(value)}
           placeholder='Descreva o serviço...'/>
 
-          <Text>Data de início</Text>
+          <Text style={estilo.txt}>Data de início</Text>
           <TextInput
           style={estilo.inputs}
           onChangeText={value => setInicio(value)}
           placeholder='Data de entrada...'/>
 
-          <Text>Previsão de entrega</Text>
+          <Text style={estilo.txt}>Previsão de entrega</Text>
           <TextInput
           style={estilo.inputs}
           onChangeText={value => setPrevisao_entrega(value)}
@@ -55,8 +56,13 @@ export default function AdicionarPedido(){
       margin: 20,
     },
     inputs:{
-      width: '80%',
-      paddingBottom:15,
-      borderColor:'red'
+      width: '100%',
+      // paddingBottom:15,
+      borderBottomWidth: 1,
+      borderBottomColor:'#0005',
+      // marginTop:10
+    },
+    txt:{
+      marginTop: 20,
     }
   })

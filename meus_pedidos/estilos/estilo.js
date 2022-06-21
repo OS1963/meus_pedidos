@@ -23,19 +23,12 @@ export default estilos = StyleSheet.create({
         fontSize: 50,
     },
     
-    verMaisImagem:{
-        width: 54,
-        height: 54,
+    adicionar:{
+        color: '#5CC6BA',
+        width: 70,
+        flexDirection: 'row',
+        justifyContent:'flex-end',
+        alignItems:'flex-end'
     },
-
-  vermais:{
-    position: "relative",
-    left: '17%',
-    top: '32%',
-  }
-    
-
-    
-
     
 })
