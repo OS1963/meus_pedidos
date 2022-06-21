@@ -7,10 +7,10 @@ import {Entypo, Feather, AntDesign} from '@expo/vector-icons'
 
 // import CadastrarPedidos from './componentes/CadastrarPedidos';
 
-import CadastrarPedidos from './CadastrarPedidos'
+import AdicionarPedido from './AdicionarPedido'
 import TelaHome from './TelaHome';
 import EditarPedidos from './EditarPedidos';
-import TelaPedidos from './TelaPedidos';
+import PesquisaPedido from './PesquisaPedido';
 import VisualizarPedidos from './VisualizarPedidos';
 
 //importando o botão adicionar:
@@ -42,7 +42,7 @@ export default function Rotas(){
                 </View>
             )}}/>
 
-            <Guias.Screen name='Cadastrar' component={CadastrarPedidos} options={{headerTitle:'Adicionar pedido', tabBarIcon: ({focused}) => (
+            <Guias.Screen name='AdicionarPedido' component={AdicionarPedido} options={{headerTitle:'Adicionar pedido', tabBarIcon: ({focused}) => (
                 <Entypo name='plus' size={30} style={{color:'#fff'}}/>
             ), 
             tabBarButton: (props) => (
@@ -51,7 +51,7 @@ export default function Rotas(){
         }}/>
 
             {/* vou colocar pedidos como pesquisar */}
-            <Guias.Screen name='Pedidos' component={TelaPedidos} options={{headerTitle:'Pesquisar pedido',tabBarIcon:({focused}) => (
+            <Guias.Screen name='PesquisaPedido' component={PesquisaPedido} options={{headerTitle:'Pesquisar pedido',tabBarIcon:({focused}) => (
                 <View style={estilo.centralizar_tabBar}>
                     <AntDesign name='search1' size={25} style={{color: focused ? '#5CC6BA' : '#717F7F' }}/>
                     <Text style={{fontSize:9, color: focused? '#5CC6BA' : '#717F7F' }}>PESQUISAR</Text>

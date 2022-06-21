@@ -2,7 +2,7 @@
 import React from 'react';
 import {View, Text, Button} from 'react-native'
 
-export default function VisualizarPedidos({navigation}){
+export default function VisualizarPedidos(){
     return(
       <View>
         <Text>Dados do Pedido</Text>

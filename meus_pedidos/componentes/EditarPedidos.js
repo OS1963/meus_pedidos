@@ -2,7 +2,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-export default function EditarPedidos({navigation}){
+export default function EditarPedidos(){
     return(
       <View>
         <Text>
