@@ -10,7 +10,26 @@ export default function AdicionarPedido({navigation}){
   const [telefone, setTelefone] = useState(null)
   const [servico, setServico] = useState(null)
   const [inicio, setInicio] = useState(null)
-  const [Previsao_entrega, setPrevisao_entrega] = useState(null)
+  const [previsao_entrega, setPrevisao_entrega] = useState(null)
+
+   //função para salvar temmporariamente as informações ao clicar no botão Salvar:
+   function handleNew(){
+    const newData = {
+      // id:"",
+      nome,
+      telefone,
+      servico,
+      inicio,
+      previsao_entrega
+    }
+
+    console.log(newData)
+
+    //armazenando as informações no dispositivo (chave, valor)
+    //na chave coloquei o nome da aplicação(meuspedidos) seguida da coleção que é pedidos
+    //para poder armazenar os dados é preciso convertê-los em string através do JSON
+    // await AsyncStorage.setItem("@meuspedidos:pedidos", JSON.stringify(newData));
+  }
 
     return(
       <View>
@@ -19,34 +38,41 @@ export default function AdicionarPedido({navigation}){
           <Text>Nome</Text>
           <TextInput style={estilo.inputs}
           autoFocus={true}
-          onChangeText={value => setNome(value)}
+          onChangeText={setNome}
           placeholder='Digite o nome...'/>
 
           <Text style={estilo.txt}>Telefone</Text>
           <TextInput
           style={estilo.inputs}
-          onChangeText={value => setTelefone(value)}
+          onChangeText={setTelefone}
           keyboardType='numeric'
           placeholder='Digite o telefone...'/>
 
           <Text style={estilo.txt}>Serviço</Text>
           <TextInput
           style={estilo.inputs}
-          onChangeText={value => setServico(value)}
+          onChangeText={setServico}
           placeholder='Descreva o serviço...'/>
 
           <Text style={estilo.txt}>Data de início</Text>
           <TextInput
           style={estilo.inputs}
-          onChangeText={value => setInicio(value)}
+          onChangeText={setInicio}
           placeholder='Data de entrada...'/>
 
           <Text style={estilo.txt}>Previsão de entrega</Text>
           <TextInput
           style={estilo.inputs}
-          onChangeText={value => setPrevisao_entrega(value)}
+          onChangeText={setPrevisao_entrega}
           placeholder='Previsão de entrega...'/>
         </View>
+
+        <View>
+          <Button 
+          title='Salvar'
+          onPress={handleNew}/>
+        </View>
+
       </View>
     )
   }
