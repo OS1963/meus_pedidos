@@ -9,7 +9,7 @@ import {StatusBar} from 'expo-status-bar'
 export default function({navigation}){
     return(
       <SafeAreaView style={estil.container}>
-        <StatusBar hidden={true}/>
+        <StatusBar hidden={false} backgroundColor={'#fff'}/>
         <Text>Tela Inicial</Text>
         <Text>Aqui será mostrado os pedidos em forma de uma lista</Text>
         <Text>Aqui será mostrado os pedidos em forma de uma lista</Text>

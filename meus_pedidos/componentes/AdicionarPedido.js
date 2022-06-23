@@ -1,6 +1,6 @@
 //Tela para inserir pedidos
 import React, {useState}from 'react';
-import {View, Text, Button, TextInput, StyleSheet, Alert, ScrollView} from 'react-native';
+import {View, Text, Button, TextInput, StyleSheet, Alert, ScrollView, KeyboardAvoidingView, Platform} from 'react-native';
 import {Entypo, Feather, AntDesign} from '@expo/vector-icons';
 //importando a biblioteca que permite arazenamento local:
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -40,8 +40,11 @@ export default function AdicionarPedido({navigation}){
   }
 
     return(
-      <View>
-        <Text>titulo: Adicionar Pedidos</Text>
+      <KeyboardAvoidingView
+      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={30}>
+        {/* <Text>titulo: Adicionar Pedidos</Text> */}
+        <ScrollView>
         <View style={estilo.form}>
           <Text>Nome</Text>
           <TextInput style={estilo.inputs}
@@ -74,14 +77,13 @@ export default function AdicionarPedido({navigation}){
           onChangeText={setPrevisao_entrega}
           placeholder='Previsão de entrega...'/>
         </View>
-        
-
         <View>
           <Button 
           title='Salvar'
           onPress={handleNew}/>
         </View>
-      </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     )
   }
 
