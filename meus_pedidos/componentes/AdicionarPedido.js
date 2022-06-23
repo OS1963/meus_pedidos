@@ -1,7 +1,11 @@
 //Tela para inserir pedidos
 import React, {useState}from 'react';
-import {View, Text, Button, TextInput, StyleSheet} from 'react-native'
-import {Entypo, Feather, AntDesign} from '@expo/vector-icons'
+import {View, Text, Button, TextInput, StyleSheet, Alert, ScrollView} from 'react-native';
+import {Entypo, Feather, AntDesign} from '@expo/vector-icons';
+//importando a biblioteca que permite arazenamento local:
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 
 export default function AdicionarPedido({navigation}){
@@ -12,8 +16,8 @@ export default function AdicionarPedido({navigation}){
   const [inicio, setInicio] = useState(null)
   const [previsao_entrega, setPrevisao_entrega] = useState(null)
 
-   //função para salvar temmporariamente as informações ao clicar no botão Salvar:
-   function handleNew(){
+   //função para salvar temmporariamente(no estado) as informações ao clicar no botão Salvar:
+   async function handleNew(){
     const newData = {
       // id:"",
       nome,
@@ -28,7 +32,11 @@ export default function AdicionarPedido({navigation}){
     //armazenando as informações no dispositivo (chave, valor)
     //na chave coloquei o nome da aplicação(meuspedidos) seguida da coleção que é pedidos
     //para poder armazenar os dados é preciso convertê-los em string através do JSON
-    // await AsyncStorage.setItem("@meuspedidos:pedidos", JSON.stringify(newData));
+    await AsyncStorage.setItem("@meuspedidos:pedidos", JSON.stringify(newData));
+
+    Alert.alert(
+      'Sucesso','Pedido Cadastrado com Sucesso'
+    )
   }
 
     return(
@@ -66,13 +74,13 @@ export default function AdicionarPedido({navigation}){
           onChangeText={setPrevisao_entrega}
           placeholder='Previsão de entrega...'/>
         </View>
+        
 
         <View>
           <Button 
           title='Salvar'
           onPress={handleNew}/>
         </View>
-
       </View>
     )
   }
