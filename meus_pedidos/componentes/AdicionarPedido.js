@@ -19,7 +19,6 @@ export default function AdicionarPedido({navigation}){
    //função para salvar temmporariamente(no estado) as informações ao clicar no botão Salvar:
    async function handleNew(){
     const newData = {
-      // id:"",
       nome,
       telefone,
       servico,
