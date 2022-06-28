@@ -5,6 +5,9 @@ import estilo from '../estilos/estilo';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {StatusBar} from 'expo-status-bar';
 
+//importando bibliotecas para permitir a atualização auomática da tela home:
+import { useFocusEffect } from '@react-navigation/native';
+
 
 
 //importando o Async para poder mostrar os dados armazenados
@@ -35,9 +38,11 @@ export default function({navigation}){
     setPedidos(pedidos);
   }
 
-   useEffect(()=>{
+  // para atulizar a página automáticamente usamos o useFocusEffect com o useCallback:
+
+   useFocusEffect(useCallback(()=>{
     buscarPedido();
-  },[]);
+  },[]));
 
   const amigos =[
     {nome:'Orlando', Sobrenome: 'Silva', Key: '1'},
