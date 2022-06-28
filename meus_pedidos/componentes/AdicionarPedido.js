@@ -15,29 +15,34 @@ export default function AdicionarPedido({navigation}){
   const [servico, setServico] = useState(null)
   const [inicio, setInicio] = useState(null)
   const [previsao_entrega, setPrevisao_entrega] = useState(null)
-
-   //função para salvar temmporariamente(no estado) as informações ao clicar no botão Salvar:
-   async function handleNew(){
-    const newData = {
+  //criando funções de armazenamento:
+   async function salvar(){
+    try{
+    const pedido = {
       nome,
       telefone,
       servico,
       inicio,
-      previsao_entrega
-    }
-
-    console.log(newData)
+      previsao_entrega}
+  
+    console.log(pedido)
 
     //armazenando as informações no dispositivo (chave, valor)
     //na chave coloquei o nome da aplicação(meuspedidos) seguida da coleção que é pedidos
     //para poder armazenar os dados é preciso convertê-los em string através do JSON
-    await AsyncStorage.setItem("@meuspedidos:pedidos", JSON.stringify(newData));
-
+    await AsyncStorage.setItem("@meuspedidos:pedidos", JSON.stringify(pedido));
+ 
+    //mensagem de sucesso para armazenamento realizado com sucesso
     Alert.alert(
       'Sucesso','Pedido Cadastrado com Sucesso'
     )
+    }catch(error){
+      console.log(error);
+      Alert.alert(
+        'Error','Ocorreu um erro ao tentar salvar pedido'
+      )
+    }
   }
-
     return(
       <KeyboardAvoidingView
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
@@ -79,7 +84,7 @@ export default function AdicionarPedido({navigation}){
         <View>
           <Button 
           title='Salvar'
-          onPress={handleNew}/>
+          onPress={salvar}/>
         </View>
         </ScrollView>
       </KeyboardAvoidingView>
