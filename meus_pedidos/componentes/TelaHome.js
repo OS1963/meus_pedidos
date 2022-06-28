@@ -30,9 +30,9 @@ export default function({navigation}){
 
   async function buscarPedido (){
     const response = await AsyncStorage.getItem('@meuspedidos:pedidos');
-    const pedidos = response ? JSON.parse(response) : {};
+    const pedidos = response ? JSON.parse(response) : [];
     console.log(pedidos);
-    setPedidos([pedidos]);
+    setPedidos(pedidos);
   }
 
    useEffect(()=>{
@@ -47,8 +47,7 @@ export default function({navigation}){
     {nome:'Samuel', Sobrenome: 'Silva', Key: '5'},
   ]
 
-  //estado para adicionar novos pedidos
-  const [newpedido, setNewPedido] = useState();
+ 
 
   // async function handleFetchData(){
   //   // const response = await AsyncStorage.removeItem('@meuspedidos:pedidos');
@@ -89,6 +88,7 @@ export default function({navigation}){
           return(
             <View>
               <Text>{item.nome}</Text>
+              <Text>{item.telefone}</Text>
             </View>
           )
         }}

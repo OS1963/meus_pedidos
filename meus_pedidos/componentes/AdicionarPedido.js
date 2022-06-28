@@ -30,7 +30,16 @@ export default function AdicionarPedido({navigation}){
     //armazenando as informações no dispositivo (chave, valor)
     //na chave coloquei o nome da aplicação(meuspedidos) seguida da coleção que é pedidos
     //para poder armazenar os dados é preciso convertê-los em string através do JSON
-    await AsyncStorage.setItem("@meuspedidos:pedidos", JSON.stringify(pedido));
+
+    //recupreando os dados já salvos e salvando com o novos dados que foram inseridos:
+    const response = await AsyncStorage.getItem("@meuspedidos:pedidos");
+    const dadosAnteriores = response ? JSON.parse(response) : [];
+
+    //criando um novo objeto que vai conter todo os dados anteriores e vai permitir setar outros novos dados:
+    const pedidos = [...dadosAnteriores, pedido];
+
+
+    await AsyncStorage.setItem("@meuspedidos:pedidos", JSON.stringify(pedidos));
  
     //mensagem de sucesso para armazenamento realizado com sucesso
     Alert.alert(
