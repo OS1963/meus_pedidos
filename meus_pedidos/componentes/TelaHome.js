@@ -117,10 +117,10 @@ export default function({navigation}){
               <Text style={{color:'red'}}>Data de Inicio: <Text style={{color:'black'}}>{item.inicio}</Text></Text>
               <Text style={{color:'red'}}>Previsão de Entrega: <Text style={{color:'black'}}>{item.previsao_entrega}</Text></Text>
               </View>
-              {/* <TouchableOpacity onPress={() => removerPedido(item.nome)}>
+              <TouchableOpacity onPress={() => removerPedido(item.nome)}>
                 <Icon name='delete' size={25} color={'red'}/>
               </TouchableOpacity>
-              <Button title='remove' onPress={() => removerPedido(item.nome)}/> */}
+              <Button title='remove' onPress={() => removerPedido(item.nome)}/>
             </View>
           )
         }}

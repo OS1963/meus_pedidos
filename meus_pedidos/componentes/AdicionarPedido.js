@@ -51,8 +51,6 @@ export default function AdicionarPedido({navigation}){
         'Error','Ocorreu um erro ao tentar salvar pedido'
       )
     }
-     //para o teclado sumir quando clicar em salvar/ (falta testar)
-     keyboard.dimiss();
   }
 
     return(
