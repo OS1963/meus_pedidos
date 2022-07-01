@@ -1,9 +1,10 @@
 //Tela inicial
 import React, { useState, useEffect, useCallback } from 'react';
-import {View, Text, Button, TouchableOpacity, Image, Modal, StyleSheet, SafeAreaView, FlatList} from 'react-native';
+import {View, Text, Button, TouchableOpacity, Image, Modal, StyleSheet, SafeAreaView, FlatList, Alert} from 'react-native';
 import estilo from '../estilos/estilo';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {StatusBar} from 'expo-status-bar';
+import { ListItem } from 'react-native-elements'
 
 //importando bibliotecas para permitir a atualização auomática da tela home:
 import { useFocusEffect } from '@react-navigation/native';
@@ -38,9 +39,22 @@ export default function({navigation}){
     setPedidos(pedidos);
   }
 
+  //validando para saber se o usuário realmente quer exluir o pedido. Se sim, a função removerPedido é chamada, 
+  //caso contrário nada acontece
+  function remover(nome){
+    Alert.alert('Excluir Pedido','Deseja excluir o pedido?',[
+      {text:'Sim',
+      onPress(){
+        removerPedido(nome);
+      }
+    },
+      {text:'Não'}
+    ])
+  }
+
   //função para remover pedido:
   async function removerPedido(nome){
-    const response = await AsyncStorage.getItem('@meuspedidos:pedidos');
+      const response = await AsyncStorage.getItem('@meuspedidos:pedidos');
     const dadosAnteriores = response ? JSON.parse(response) : [];
 
     const pedidos = dadosAnteriores.filter((item) => item.nome != nome);
@@ -48,9 +62,6 @@ export default function({navigation}){
     
   }
 
-  async function teste(nome){
-    setPedidos(pedidos.filter(pedido => pedido != nome))
-  }
 
   // para atulizar a página automáticamente usamos o useFocusEffect com o useCallback:
 
@@ -66,22 +77,15 @@ export default function({navigation}){
     {nome:'Samuel', Sobrenome: 'Silva', Key: '5'},
   ]
 
+  //função para carregar pedidos -> estou trabalhando aqui e o erro está vindo daqui
+  function carregarPedido({item}){
+    return (
+      <ListItem
+      title={item.nome}/>
+    )
+    
+  }
  
-
-  // async function handleFetchData(){
-  //   // const response = await AsyncStorage.removeItem('@meuspedidos:pedidos');
-  //   // const response = await AsyncStorage.getAllKeys();
-  //   const response = await AsyncStorage.getItem('@meuspedidos:pedidos');
-  //   const data = response ? JSON.parse(response) : {};
-  //   setData([data]);
-    // console.log(response);
-    // console.log(JASON.parse(response))
-  // }
-
-  // useEffect(()=>{
-  //   handleFetchData();
-  // },[]);
-
     return(
       <SafeAreaView style={estil.container}>
         <StatusBar hidden={false} backgroundColor={'#fff'}/>
@@ -101,7 +105,7 @@ export default function({navigation}){
         showsVerticalScrollIndicator={false}
         /> */}
 
-        <FlatList 
+        {/* <FlatList 
         keyExtractor={(item) => item.nome}
         style={estil.flatlist}
         data={pedidos}
@@ -120,10 +124,18 @@ export default function({navigation}){
               <TouchableOpacity onPress={() => removerPedido(item.nome)}>
                 <Icon name='delete' size={25} color={'red'}/>
               </TouchableOpacity>
-              <Button title='remove' onPress={() => removerPedido(item.nome)}/>
+              <Button title='remove' onPress={() => remover(item.nome)}/>
+              
             </View>
           )
         }}
+        /> */}
+
+
+        <FlatList
+        data={pedidos}
+        keyExtractor={(item) => item.nome}
+        renderItem={carregarPedido}
         />
 
         
