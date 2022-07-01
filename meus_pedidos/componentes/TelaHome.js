@@ -38,6 +38,20 @@ export default function({navigation}){
     setPedidos(pedidos);
   }
 
+  //função para remover pedido:
+  async function removerPedido(nome){
+    const response = await AsyncStorage.getItem('@meuspedidos:pedidos');
+    const dadosAnteriores = response ? JSON.parse(response) : [];
+
+    const pedidos = dadosAnteriores.filter((item) => item.nome != nome);
+    await AsyncStorage.setItem("@meuspedidos:pedidos", JSON.stringify(pedidos));
+    
+  }
+
+  async function teste(nome){
+    setPedidos(pedidos.filter(pedido => pedido != nome))
+  }
+
   // para atulizar a página automáticamente usamos o useFocusEffect com o useCallback:
 
    useFocusEffect(useCallback(()=>{
@@ -87,13 +101,26 @@ export default function({navigation}){
         showsVerticalScrollIndicator={false}
         /> */}
 
-        <FlatList
+        <FlatList 
+        keyExtractor={(item) => item.nome}
+        style={estil.flatlist}
         data={pedidos}
         renderItem={({item, index}) => {
           return(
-            <View>
-              <Text>{item.nome}</Text>
-              <Text>{item.telefone}</Text>
+            <View style={estil.containerLista}>
+              <View>
+              <Text style={{color:'red'}}>Cliente: <Text style={{color:'black'}}>{item.nome}</Text></Text>
+              </View>
+              <View>
+              <Text style={{color:'red'}}>Contato: <Text style={{color:'black'}}>{item.telefone}</Text></Text>
+              <Text style={{color:'red'}}>Serviço: <Text style={{color:'black'}}>{item.servico}</Text></Text>
+              <Text style={{color:'red'}}>Data de Inicio: <Text style={{color:'black'}}>{item.inicio}</Text></Text>
+              <Text style={{color:'red'}}>Previsão de Entrega: <Text style={{color:'black'}}>{item.previsao_entrega}</Text></Text>
+              </View>
+              {/* <TouchableOpacity onPress={() => removerPedido(item.nome)}>
+                <Icon name='delete' size={25} color={'red'}/>
+              </TouchableOpacity>
+              <Button title='remove' onPress={() => removerPedido(item.nome)}/> */}
             </View>
           )
         }}
@@ -133,11 +160,15 @@ export default function({navigation}){
       borderRadius:4,
       backgroundColor:'#DFDFDF',
 
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems:'center',
-      justifyContent: 'space-between'
+   
     },
+    esc:{
+         display: 'flex',
+        flexDirection: 'row',
+        alignItems:'center',
+        justifyContent: 'space-between'
+    },
+
     textoLista:{
       fontSize:14,
       color:'#333',
