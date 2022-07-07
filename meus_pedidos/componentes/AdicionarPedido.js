@@ -4,6 +4,8 @@ import {View, Text, Button, TextInput, StyleSheet, Alert, ScrollView, KeyboardAv
 import {Entypo, Feather, AntDesign} from '@expo/vector-icons';
 //importando a biblioteca que permite arazenamento local:
 import AsyncStorage from '@react-native-async-storage/async-storage';
+//
+
 
 
 
@@ -15,6 +17,9 @@ export default function AdicionarPedido({navigation}){
   const [servico, setServico] = useState(null)
   const [inicio, setInicio] = useState(null)
   const [previsao_entrega, setPrevisao_entrega] = useState(null)
+
+  
+
   //criando funções de armazenamento:
    async function salvar(){
     try{
@@ -25,7 +30,8 @@ export default function AdicionarPedido({navigation}){
       inicio,
       previsao_entrega}
   
-    console.log(pedido)
+    // console.log(pedido)
+
 
     //armazenando as informações no dispositivo (chave, valor)
     //na chave coloquei o nome da aplicação(meuspedidos) seguida da coleção que é pedidos
@@ -38,12 +44,12 @@ export default function AdicionarPedido({navigation}){
     //criando um novo objeto que vai conter todo os dados anteriores e vai permitir setar outros novos dados:
     const pedidos = [...dadosAnteriores, pedido];
 
-
+    //armazenando os dados no formato string
     await AsyncStorage.setItem("@meuspedidos:pedidos", JSON.stringify(pedidos));
  
     //mensagem de sucesso para armazenamento realizado com sucesso
     Alert.alert(
-      'Sucesso','Pedido Cadastrado com Sucesso'
+      'Sucesso','Pedido Cadastrado com Sucesso',
     )
     }catch(error){
       console.log(error);

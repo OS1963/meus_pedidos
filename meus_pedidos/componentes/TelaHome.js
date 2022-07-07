@@ -4,7 +4,9 @@ import {View, Text, Button, TouchableOpacity, Image, Modal, StyleSheet, SafeArea
 import estilo from '../estilos/estilo';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {StatusBar} from 'expo-status-bar';
-import { ListItem } from 'react-native-elements'
+// import { ListItem } from 'react-native-elements';
+
+
 
 //importando bibliotecas para permitir a atualização auomática da tela home:
 import { useFocusEffect } from '@react-navigation/native';
@@ -35,7 +37,7 @@ export default function({navigation}){
   async function buscarPedido (){
     const response = await AsyncStorage.getItem('@meuspedidos:pedidos');
     const pedidos = response ? JSON.parse(response) : [];
-    console.log(pedidos);
+    // console.log(pedidos);
     setPedidos(pedidos);
   }
 
@@ -59,6 +61,8 @@ export default function({navigation}){
 
     const pedidos = dadosAnteriores.filter((item) => item.nome != nome);
     await AsyncStorage.setItem("@meuspedidos:pedidos", JSON.stringify(pedidos));
+    setPedidos(pedidos);
+    console.log()
     
   }
 
@@ -105,7 +109,7 @@ export default function({navigation}){
         showsVerticalScrollIndicator={false}
         /> */}
 
-        {/* <FlatList 
+        <FlatList 
         keyExtractor={(item) => item.nome}
         style={estil.flatlist}
         data={pedidos}
@@ -129,14 +133,14 @@ export default function({navigation}){
             </View>
           )
         }}
-        /> */}
+        />
 
 
-        <FlatList
+        {/* <FlatList
         data={pedidos}
         keyExtractor={(item) => item.nome}
         renderItem={carregarPedido}
-        />
+        /> */}
 
         
         <View style={estil.caixa_botao}>
