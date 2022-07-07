@@ -81,6 +81,8 @@ export default function({navigation}){
     {nome:'Samuel', Sobrenome: 'Silva', Key: '5'},
   ]
 
+  const data = new Date();
+
   //função para carregar pedidos -> estou trabalhando aqui e o erro está vindo daqui
   function carregarPedido({item}){
     return (
@@ -93,21 +95,10 @@ export default function({navigation}){
     return(
       <SafeAreaView style={estil.container}>
         <StatusBar hidden={false} backgroundColor={'#fff'}/>
+        <View style={estil.cabecalho}>
         <Text>Tela Inicial</Text>
-        {/* <FlatList style = {estil.flatlist}
-        data={pedidos}
-        // keyExtractor={(item) => item.nome}
-        keyExtractor={(pedidos) => pedidos.nome}
-        renderItem={({item}) => (
-          <View style={estil.containerLista}>
-            <Text style={estil.textoLista}>Nome: {item}</Text>
-            <TouchableOpacity>
-              <Icon name='delete' size={25} color={'red'}/>
-            </TouchableOpacity>
-          </View>
-        )}
-        showsVerticalScrollIndicator={false}
-        /> */}
+        </View>
+        
 
         <FlatList 
         keyExtractor={(item) => item.nome}
@@ -124,7 +115,11 @@ export default function({navigation}){
               <Text style={{color:'red'}}>Serviço: <Text style={{color:'black'}}>{item.servico}</Text></Text>
               <Text style={{color:'red'}}>Data de Inicio: <Text style={{color:'black'}}>{item.inicio}</Text></Text>
               <Text style={{color:'red'}}>Previsão de Entrega: <Text style={{color:'black'}}>{item.previsao_entrega}</Text></Text>
+              <Text style={{color:'red'}}>ID: <Text style={{color:'black'}}>{item.id}</Text></Text>
               </View>
+              
+
+
               <TouchableOpacity onPress={() => removerPedido(item.nome)}>
                 <Icon name='delete' size={25} color={'red'}/>
               </TouchableOpacity>
@@ -134,6 +129,9 @@ export default function({navigation}){
           )
         }}
         />
+        <View>
+          <Text>{data.toLocaleString()}</Text>
+        </View>
 
 
         {/* <FlatList
@@ -153,6 +151,11 @@ export default function({navigation}){
   }
 
   const estil = StyleSheet.create({
+    cabecalho:{
+      width: '100%',
+      height: 100,
+      backgroundColor:'#5CC6BA',      
+    },
     container:{
       paddingTop:30,
       padding: 15,

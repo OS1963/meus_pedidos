@@ -18,19 +18,19 @@ export default function AdicionarPedido({navigation}){
   const [inicio, setInicio] = useState(null)
   const [previsao_entrega, setPrevisao_entrega] = useState(null)
 
-  
-
   //criando funções de armazenamento:
    async function salvar(){
+    const id = Date();
     try{
     const pedido = {
+      id,
       nome,
       telefone,
       servico,
       inicio,
       previsao_entrega}
   
-    // console.log(pedido)
+    console.log(pedido)
 
 
     //armazenando as informações no dispositivo (chave, valor)
