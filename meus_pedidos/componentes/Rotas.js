@@ -8,7 +8,8 @@ import VisualizarPedidos from './VisualizarPedidos';
 import PesquisaPedido from './PesquisaPedido';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { Button, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign'
+import Icon from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 
 
@@ -17,7 +18,17 @@ const Stack = createNativeStackNavigator();
 export default function Rotas(){
     return(
         <Stack.Navigator initialRouteName='TelaHome'>
-            <Stack.Screen name='TelaHome' component={TelaHome} options={{headerShown:false}}/>
+            <Stack.Screen name='TelaHome' component={TelaHome} options={{headerTitle:'Pedidos', headerStyle:{
+            backgroundColor:'#5CC6BA'},
+            headerTitleStyle:{color:'#fff'},
+            headerRight: () => (
+                <TouchableOpacity>
+                    <Entypo name='magnifying-glass' size={35} style={{color:'#fff'}}/>
+                </TouchableOpacity>
+              ),
+    
+            }} />
+
             <Stack.Screen name='Adicionar' component={AdicionarPedido} options={{headerTitle:'Adicionar Pedidos', headerStyle:{
             backgroundColor:'#5CC6BA'},
             headerTitleStyle:{color:'#fff'},

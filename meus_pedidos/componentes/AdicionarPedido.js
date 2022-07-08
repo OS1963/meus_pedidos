@@ -18,8 +18,22 @@ export default function AdicionarPedido({navigation}){
   const [inicio, setInicio] = useState(null)
   const [previsao_entrega, setPrevisao_entrega] = useState(null)
 
+  // criando estados para validar formulário
+  const [errorNome, setErrorNome] = useState(null)
+  const [errorTelefone, setErroTelefone] = useState(null)
+  const [errorServico, setErrorServico] = useState(null)
+  
+  const validar = () =>{
+    setErrorNome('Preencha')
+    return false;
+  }
+
+
   //criando funções de armazenamento:
    async function salvar(){
+    
+    if (validar()){
+    //inicio
     const id = Date();
     try{
     const pedido = {
@@ -59,6 +73,9 @@ export default function AdicionarPedido({navigation}){
     }
   }
 
+  //fim
+}
+
     return(
       <KeyboardAvoidingView
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
@@ -70,7 +87,9 @@ export default function AdicionarPedido({navigation}){
           <TextInput style={estilo.inputs}
           autoFocus={true}
           onChangeText={setNome}
-          placeholder='Digite o nome...'/>
+          placeholder='Digite o nome...'
+          errorMessage={errorNome}/>
+          
 
           <Text style={estilo.txt}>Telefone</Text>
           <TextInput

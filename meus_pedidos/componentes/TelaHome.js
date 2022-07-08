@@ -5,6 +5,7 @@ import estilo from '../estilos/estilo';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {StatusBar} from 'expo-status-bar';
 // import { ListItem } from 'react-native-elements';
+import Botao_Adicionar from './Botao_Adicionar';
 
 
 
@@ -95,11 +96,6 @@ export default function({navigation}){
     return(
       <SafeAreaView style={estil.container}>
         <StatusBar hidden={false} backgroundColor={'#fff'}/>
-        <View style={estil.cabecalho}>
-        <Text>Tela Inicial</Text>
-        </View>
-        
-
         <FlatList 
         keyExtractor={(item) => item.nome}
         style={estil.flatlist}
@@ -119,11 +115,10 @@ export default function({navigation}){
               </View>
               
 
-
-              <TouchableOpacity onPress={() => removerPedido(item.nome)}>
+              {/* botão para remover pedido */}
+              <TouchableOpacity onPress={() => remover(item.nome)}>
                 <Icon name='delete' size={25} color={'red'}/>
               </TouchableOpacity>
-              <Button title='remove' onPress={() => remover(item.nome)}/>
               
             </View>
           )
@@ -132,18 +127,10 @@ export default function({navigation}){
         <View>
           <Text>{data.toLocaleString()}</Text>
         </View>
-
-
-        {/* <FlatList
-        data={pedidos}
-        keyExtractor={(item) => item.nome}
-        renderItem={carregarPedido}
-        /> */}
-
-        
         <View style={estil.caixa_botao}>
           <TouchableOpacity onPress={() => navigation.navigate('Adicionar')}>
-            <Icon name='pluscircle' size={70} style={{color:'#5CC6BA'}}/>
+            {/* <Icon name='pluscircle' size={60} style={{color:'#5CC6BA'}}/> */}
+            <Botao_Adicionar/>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -151,13 +138,8 @@ export default function({navigation}){
   }
 
   const estil = StyleSheet.create({
-    cabecalho:{
-      width: '100%',
-      height: 100,
-      backgroundColor:'#5CC6BA',      
-    },
     container:{
-      paddingTop:30,
+      paddingTop:10,
       padding: 15,
       flex: 1,
       // backgroundColor:'#E5E5E5'
@@ -178,11 +160,9 @@ export default function({navigation}){
       padding: 15,
       borderRadius:4,
       backgroundColor:'#DFDFDF',
-
-   
     },
     esc:{
-         display: 'flex',
+        display: 'flex',
         flexDirection: 'row',
         alignItems:'center',
         justifyContent: 'space-between'
