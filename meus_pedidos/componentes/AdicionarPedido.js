@@ -161,7 +161,7 @@ export default function AdicionarPedido({navigation}){
           title='Salvar'
           onPress={() => {
             salvar()
-            // navigation.goBack()
+            navigation.goBack()
           }}/>
 
           <TouchableOpacity>

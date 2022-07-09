@@ -18,7 +18,7 @@ const Stack = createNativeStackNavigator();
 export default function Rotas(){
     return(
         <Stack.Navigator initialRouteName='TelaHome'>
-            <Stack.Screen name='TelaHome' component={TelaHome} options={{headerTitle:'Pedidos', headerStyle:{
+            <Stack.Screen name='TelaHome' component={TelaHome} options={{headerTitle:'Lista de Pedidos', headerStyle:{
             backgroundColor:'#5CC6BA'},
             headerTitleStyle:{color:'#fff'},
             headerRight: () => (

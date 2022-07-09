@@ -12,27 +12,13 @@ import MaskInput from 'react-native-mask-input';
 
 //importando bibliotecas para permitir a atualização auomática da tela home:
 import { useFocusEffect } from '@react-navigation/native';
-
-
-
 //importando o Async para poder mostrar os dados armazenados
 import AsyncStorage from '@react-native-async-storage/async-storage';
-function exibirPedido(){
-  pedido = {
-    nome: String,
-    telefone: String,
-    servico: String,
-    inicio: String,
-    previsao_entrega:String,
-  }
-}
+
 
 export default function({navigation}){
-  // o data ficara salvo a lista de pedidos
-  // const [data, setData] = useState([{nome:'orlando', senha:'Silva'}])
-  // const [newData, setNewData] = useState([])
 
-//criando estado para poder permitir a exbição dos dados armazenados:
+  //criando estado para poder permitir a exbição dos dados armazenados:
   //estado para salvar a lista de pedidos
   const [pedidos, setPedidos] = useState([]);
 
@@ -41,6 +27,7 @@ export default function({navigation}){
     const pedidos = response ? JSON.parse(response) : [];
     // console.log(pedidos);
     setPedidos(pedidos);
+    buscarPedido();
   }
 
   //validando para saber se o usuário realmente quer exluir o pedido. Se sim, a função removerPedido é chamada, 
@@ -58,7 +45,7 @@ export default function({navigation}){
 
   //função para remover pedido:
   async function removerPedido(id){
-      const response = await AsyncStorage.getItem('@meuspedidos:pedidos');
+    const response = await AsyncStorage.getItem('@meuspedidos:pedidos');
     const dadosAnteriores = response ? JSON.parse(response) : [];
 
     const pedidos = dadosAnteriores.filter((item) => item.id != id);
@@ -70,7 +57,6 @@ export default function({navigation}){
 
 
   // para atulizar a página automáticamente usamos o useFocusEffect com o useCallback:
-
    useFocusEffect(useCallback(()=>{
     buscarPedido();
   },[]));
