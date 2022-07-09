@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {StatusBar} from 'expo-status-bar';
 // import { ListItem } from 'react-native-elements';
 import Botao_Adicionar from './Botao_Adicionar';
+import MaskInput from 'react-native-mask-input';
 
 
 

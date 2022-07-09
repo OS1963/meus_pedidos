@@ -5,6 +5,10 @@ import {Entypo, Feather, AntDesign} from '@expo/vector-icons';
 //importando a biblioteca que permite arazenamento local:
 import AsyncStorage from '@react-native-async-storage/async-storage';
 //
+import { TextInputMask } from 'react-native-masked-text';
+
+import MaskInput from 'react-native-mask-input';
+
 
 
 
@@ -22,10 +26,14 @@ export default function AdicionarPedido({navigation}){
   const [errorNome, setErrorNome] = useState(null)
   const [errorTelefone, setErroTelefone] = useState(null)
   const [errorServico, setErrorServico] = useState(null)
+
+  //teste
+  const [test, setTest] = useState(null)
   
   const validar = () =>{
-    setErrorNome('Preencha')
-    return false;
+    setErrorNome('Preencha o nome do cliente')
+    
+    return true;
   }
 
 
@@ -89,15 +97,32 @@ export default function AdicionarPedido({navigation}){
           onChangeText={setNome}
           placeholder='Digite o nome...'
           errorMessage={errorNome}/>
-          
 
-          <Text style={estilo.txt}>Telefone</Text>
-          <TextInput
+          {/* <Text style={estilo.txt}>Telefone</Text> */}
+          {/* com o textiputmask: */}
+          {/* <TextInputMask
           style={estilo.inputs}
-          onChangeText={setTelefone}
-          keyboardType='numeric'
-          placeholder='Digite o telefone...'/>
+            type='cel-phone'
+            options={{
+              maskType:'BRL',
+              withDDD:true,
+              dddMask:'(99) '
+            }}
+            value={telefone}
+            onChangeText={setTelefone}
+            placeholder='Digite o telefone...'
+          /> */}
 
+          <Text style={estilo.txt}>Contato</Text>
+          <MaskInput
+          style={estilo.inputs}
+          value={telefone}
+          onChangeText={setTelefone}
+          mask={['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+          keyboardType={'numeric'}
+          />
+
+        
           <Text style={estilo.txt}>Serviço</Text>
           <TextInput
           style={estilo.inputs}
@@ -105,17 +130,28 @@ export default function AdicionarPedido({navigation}){
           placeholder='Descreva o serviço...'/>
 
           <Text style={estilo.txt}>Data de início</Text>
-          <TextInput
+          <MaskInput
           style={estilo.inputs}
+          value={inicio}
           onChangeText={setInicio}
-          placeholder='Data de entrada...'/>
+          mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
+          placeholder={'__/__/____'}
+          keyboardType={'numeric'}
+          />
 
           <Text style={estilo.txt}>Previsão de entrega</Text>
-          <TextInput
+          <MaskInput
           style={estilo.inputs}
+          value={previsao_entrega}
           onChangeText={setPrevisao_entrega}
-          placeholder='Previsão de entrega...'/>
+          mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
+          placeholder='__/__/____'
+          keyboardType='numeric'/>
+          
         </View>
+
+
+
         <View>
           <Button 
           title='Salvar'
@@ -136,6 +172,9 @@ export default function AdicionarPedido({navigation}){
       borderBottomWidth: 1,
       borderBottomColor:'#0005',
       // marginTop:10
+      fontSize: 18,
+      paddingBottom:5,
+
     },
     txt:{
       marginTop: 20,
