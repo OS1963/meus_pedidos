@@ -1,6 +1,6 @@
 //Tela para inserir pedidos
 import React, {useState}from 'react';
-import {View, Text, Button, TextInput, StyleSheet, Alert, ScrollView, KeyboardAvoidingView, Platform} from 'react-native';
+import {View, Text, Button, TextInput, StyleSheet, Alert, ScrollView, KeyboardAvoidingView, Platform, TouchableOpacity} from 'react-native';
 import {Entypo, Feather, AntDesign} from '@expo/vector-icons';
 //importando a biblioteca que permite arazenamento local:
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -8,6 +8,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TextInputMask } from 'react-native-masked-text';
 
 import MaskInput from 'react-native-mask-input';
+
+
+import Botao_Salvar from './Botao_Salvar'
 
 
 
@@ -146,7 +149,8 @@ export default function AdicionarPedido({navigation}){
           onChangeText={setPrevisao_entrega}
           mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
           placeholder='__/__/____'
-          keyboardType='numeric'/>
+          keyboardType='numeric'
+          />
           
         </View>
 
@@ -155,7 +159,14 @@ export default function AdicionarPedido({navigation}){
         <View>
           <Button 
           title='Salvar'
-          onPress={salvar}/>
+          onPress={() => {
+            salvar()
+            // navigation.goBack()
+          }}/>
+
+          <TouchableOpacity>
+            <Botao_Salvar/>
+          </TouchableOpacity>
         </View>
         </ScrollView>
       </KeyboardAvoidingView>
