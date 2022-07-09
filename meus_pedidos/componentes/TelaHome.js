@@ -45,11 +45,11 @@ export default function({navigation}){
 
   //validando para saber se o usuário realmente quer exluir o pedido. Se sim, a função removerPedido é chamada, 
   //caso contrário nada acontece
-  function remover(nome){
+  function remover(id){
     Alert.alert('Excluir Pedido','Deseja excluir o pedido?',[
       {text:'Sim',
       onPress(){
-        removerPedido(nome);
+        removerPedido(id);
       }
     },
       {text:'Não'}
@@ -57,11 +57,11 @@ export default function({navigation}){
   }
 
   //função para remover pedido:
-  async function removerPedido(nome){
+  async function removerPedido(id){
       const response = await AsyncStorage.getItem('@meuspedidos:pedidos');
     const dadosAnteriores = response ? JSON.parse(response) : [];
 
-    const pedidos = dadosAnteriores.filter((item) => item.nome != nome);
+    const pedidos = dadosAnteriores.filter((item) => item.id != id);
     await AsyncStorage.setItem("@meuspedidos:pedidos", JSON.stringify(pedidos));
     setPedidos(pedidos);
     console.log()
@@ -98,7 +98,7 @@ export default function({navigation}){
       <SafeAreaView style={estil.container}>
         <StatusBar hidden={false} backgroundColor={'#fff'}/>
         <FlatList 
-        keyExtractor={(item) => item.nome}
+        keyExtractor={(item) => item.id}
         style={estil.flatlist}
         data={pedidos}
         renderItem={({item, index}) => {
@@ -117,7 +117,7 @@ export default function({navigation}){
               
 
               {/* botão para remover pedido */}
-              <TouchableOpacity onPress={() => remover(item.nome)}>
+              <TouchableOpacity onPress={() => remover(item.id)}>
                 <Icon name='delete' size={25} color={'red'}/>
               </TouchableOpacity>
               
