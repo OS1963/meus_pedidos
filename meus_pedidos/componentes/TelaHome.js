@@ -91,6 +91,9 @@ export default function({navigation}){
           return(
             <View style={estil.containerLista}>
               <View>
+              <Icon name='smileo' size={40}/>
+              {/* <Image source={require('../assets/avatar.png')}
+              /> */}
               <Text style={{color:'red'}}>Cliente: <Text style={{color:'black'}}>{item.nome}</Text></Text>
               </View>
               <View>
