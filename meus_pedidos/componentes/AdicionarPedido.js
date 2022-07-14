@@ -18,7 +18,8 @@ import TelaHome from './TelaHome';
 
 
 
-export default AdicionarPedido = ({navigation}) => {
+export default AdicionarPedido => {
+  const [pedido, setPedido] = useState(route.params ? route.params : {})
   
   // criando os estados
   const [nome, setNome] = useState(null)
@@ -163,7 +164,7 @@ export default AdicionarPedido = ({navigation}) => {
           title='Salvar'
           onPress={() => {
             salvar()
-            navigation.goBack()
+            // navigation.goBack()
           }}/>
 
           <TouchableOpacity>

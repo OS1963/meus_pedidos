@@ -1,7 +1,6 @@
 //Tela inicial
 import React, { useState, useEffect, useCallback } from 'react';
 import {View, Text, Button, TouchableOpacity, Image, Modal, StyleSheet, SafeAreaView, FlatList, Alert} from 'react-native';
-import estilo from '../estilos/estilo';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icone from 'react-native-vector-icons/MaterialCommunityIcons';
 import Visualizar from  'react-native-vector-icons/Fontisto'
@@ -76,16 +75,15 @@ export default function TelaHome({navigation}){
 
   // para atulizar a página automáticamente usamos o useFocusEffect com o useCallback:
    useFocusEffect(useCallback(()=>{
+    console.log('oi')
     buscarPedido();
   },[]));
 
-  const amigos =[
-    {nome:'Orlando', Sobrenome: 'Silva', Key: '1'},
-    {nome:'Fernanda', Sobrenome: 'Silva', Key: '2'},
-    {nome:'Iolanda', Sobrenome: 'Silva', Key: '3'},
-    {nome:'Valdira', Sobrenome: 'Silva', Key: '4'},
-    {nome:'Samuel', Sobrenome: 'Silva', Key: '5'},
-  ]
+  // useEffect(()=>{
+  //   buscarPedido()
+  //   return () => clearInterval(buscarPedido)
+  // }, [])
+
 
   const data = new Date();
 
@@ -232,9 +230,10 @@ export default function TelaHome({navigation}){
       // marginLeft: '3%',
       justifyContent:'space-around',
       // paddingLeft:'30%',
-      position: 'relative',
+      position: 'absolute',
       alignItems:'flex-end',
-      // left: '150%',
+      left: '70%',
+      top: '70%'
     },
     botao:{
       flexDirection:'row',

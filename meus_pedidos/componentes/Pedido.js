@@ -1,16 +1,22 @@
 //Tela para inserir pedidos
-import React from 'react';
-import {View, Text, Button} from 'react-native'
+import React, {useState} from 'react';
+import {View, Text, Button, SafeAreaView, Image} from 'react-native'
 //Importando biblioteca para poder trabalhar com armazenamento local
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TelaHome from './TelaHome';
 
-export default function Pedido(props){
+export default function Pedido({route, navigation}){
+  const [pedido, setPedido] = useState(route.params ? route.params : {})
     return(
-      <View style={{flex:1, alignItems:'center', justifyContent:'center',}}>
-        {/* verPedido(); */}
-        <Text>oi</Text>
-
-      </View>
+      <SafeAreaView>
+        <View><Image source={require('../assets/avatar.png')}
+              style={{}}
+              /></View>
+        <Text>{pedido.nome}</Text>
+        <Text>{pedido.telefone}</Text>
+        <Text>{pedido.servico}</Text>
+        <Text>{pedido.inicio}</Text>
+        <Text>{pedido.previsao_entrega}</Text>
+      </SafeAreaView>
     )
   }
