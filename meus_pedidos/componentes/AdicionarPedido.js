@@ -11,13 +11,15 @@ import MaskInput from 'react-native-mask-input';
 
 
 import Botao_Salvar from './Botao_Salvar'
+import TelaHome from './TelaHome';
 
 
 
 
 
 
-export default function AdicionarPedido({navigation}){
+export default AdicionarPedido = ({navigation}) => {
+  
   // criando os estados
   const [nome, setNome] = useState(null)
   const [telefone, setTelefone] = useState(null)

@@ -3,6 +3,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import {View, Text, Button, TouchableOpacity, Image, Modal, StyleSheet, SafeAreaView, FlatList, Alert} from 'react-native';
 import estilo from '../estilos/estilo';
 import Icon from 'react-native-vector-icons/AntDesign';
+import Icone from 'react-native-vector-icons/MaterialCommunityIcons';
+import Visualizar from  'react-native-vector-icons/Fontisto'
 import {StatusBar} from 'expo-status-bar';
 // import { ListItem } from 'react-native-elements';
 import Botao_Adicionar from './Botao_Adicionar';
@@ -14,9 +16,25 @@ import MaskInput from 'react-native-mask-input';
 import { useFocusEffect } from '@react-navigation/native';
 //importando o Async para poder mostrar os dados armazenados
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Jost_100Thin } from '@expo-google-fonts/jost';
 
+function verPedido(item){
+  return(
 
-export default function({navigation}){
+    // <View>
+    //   <Modal animationType='slide'
+    //   // transparent={true}
+    //   visible={true}
+    //   // style={{}}
+    //   >
+    //     <Text>oool</Text>
+    //   </Modal>
+    // </View>
+    Alert.alert(item.nome)
+  )
+}
+
+export default function TelaHome({navigation}){
 
   //criando estado para poder permitir a exbição dos dados armazenados:
   //estado para salvar a lista de pedidos
@@ -71,45 +89,68 @@ export default function({navigation}){
 
   const data = new Date();
 
-  //função para carregar pedidos -> estou trabalhando aqui e o erro está vindo daqui
-  function carregarPedido({item}){
+  function ver(item){
     return (
-      <ListItem
-      title={item.nome}/>
+      <View>
+        {item.nome}
+      </View>
     )
     
   }
+
  
+  const [modalVisivel, setModalVisivel] = useState(false)
     return(
       <SafeAreaView style={estil.container}>
         <StatusBar hidden={false} backgroundColor={'#fff'}/>
-        <FlatList 
+       <FlatList
         keyExtractor={(item) => item.id}
         style={estil.flatlist}
         data={pedidos}
-        renderItem={({item, index}) => {
+        renderItem={({item}) => {
           return(
             <View style={estil.containerLista}>
+              <Image source={require('../assets/avatar.png')}
+              style={estil.avatar}
+              />
               <View>
-              <Icon name='smileo' size={40}/>
-              {/* <Image source={require('../assets/avatar.png')}
-              /> */}
-              <Text style={{color:'red'}}>Cliente: <Text style={{color:'black'}}>{item.nome}</Text></Text>
-              </View>
-              <View>
-              <Text style={{color:'red'}}>Contato: <Text style={{color:'black'}}>{item.telefone}</Text></Text>
-              <Text style={{color:'red'}}>Serviço: <Text style={{color:'black'}}>{item.servico}</Text></Text>
-              <Text style={{color:'red'}}>Data de Inicio: <Text style={{color:'black'}}>{item.inicio}</Text></Text>
-              <Text style={{color:'red'}}>Previsão de Entrega: <Text style={{color:'black'}}>{item.previsao_entrega}</Text></Text>
-              <Text style={{color:'red'}}>ID: <Text style={{color:'black'}}>{item.id}</Text></Text>
-              </View>
-              
+                <Text style={estil.titulo}>{item.nome}</Text>
+                <View style={{flexDirection:'row', alignItems:'center'}}>
+                  <Icone name='whatsapp' size={18} color={'green'}/>
+                  <Text style={{paddingLeft:5, fontSize:15}}>{item.telefone}</Text>
+                </View>
 
-              {/* botão para remover pedido */}
-              <TouchableOpacity onPress={() => remover(item.id)}>
-                <Icon name='delete' size={25} color={'red'}/>
-              </TouchableOpacity>
+                <View style={{flexDirection:'row'}}>
+                  <Icone name='truck-delivery' size={20} color={'blue'}/>
+                  <Text style={{paddingLeft:5, fontSize:15}}>{item.previsao_entrega}</Text>
+                </View>
+              </View>
               
+              {/* Botões */}
+              
+              <View style={estil.botoes}>
+
+                {/* <Button title='ver' onPress={() => setModalVisivel(true)}/> */}
+                <View style={estil.botao}>
+                <TouchableOpacity onPress={() => navigation.navigate('Pedidos', item)}>
+                  <Visualizar name='preview' size={30} color={'#31A6E8'}/>
+                </TouchableOpacity>
+                </View>
+                
+                <View style={estil.botao}>
+                <TouchableOpacity onPress={() => navigation.navigate('Adicionar', item)}>
+                  <Icon name='edit' size={30} color={'#FF8000'}/>
+                </TouchableOpacity>
+                </View>
+
+                <View style={estil.botao}>
+                <TouchableOpacity onPress={() => remover(item.id)}>
+                  <Icon name='delete' size={30} color={'red'}/>
+                </TouchableOpacity>
+                </View>
+
+                
+              </View>
             </View>
           )
         }}
@@ -130,9 +171,10 @@ export default function({navigation}){
   const estil = StyleSheet.create({
     container:{
       paddingTop:10,
-      padding: 15,
+      // padding: 15,
       flex: 1,
       // backgroundColor:'#E5E5E5'
+      flexDirection:'column'
     },
     caixa_botao:{
       alignItems: 'center',
@@ -146,10 +188,17 @@ export default function({navigation}){
       marginTop: 5,
     },
     containerLista:{
-      marginBottom:15,
-      padding: 15,
+      paddingBottom:10,
+      marginBottom:10,
+      paddingTop:10,
+      paddingLeft: 20,
+      paddingRight:20,
       borderRadius:4,
-      backgroundColor:'#DFDFDF',
+      borderBottomWidth:1,
+      borderBottomColor:'#717F7F',
+      // backgroundColor:'#DFDFDF',
+      flexDirection:'row',
+      // justifyContent:'space-between'
     },
     esc:{
         display: 'flex',
@@ -165,6 +214,52 @@ export default function({navigation}){
       marginTop:4,
       textAlign:'center'
 
+    },
+
+    avatar:{
+      // width: 25,
+      marginRight:15,
+    },
+
+    titulo:{
+      fontSize:20,
+      fontWeight:'bold',
+    }, 
+
+    botoes:{
+      flexDirection:'row',
+      marginBottom: 2,
+      // marginLeft: '3%',
+      justifyContent:'space-around',
+      // paddingLeft:'30%',
+      position: 'relative',
+      alignItems:'flex-end',
+      // left: '150%',
+    },
+    botao:{
+      flexDirection:'row',
+      marginLeft: 15,
+      // padding:5,
+      justifyContent:'space-around',
+      // paddingLeft:'30%',
+      position: 'relative',
+      // alignItems:'flex-end',
+      // left: '150%',
+    },
+    // estilizando a modal:
+    modalPrincipal:{
+      flex: 1,
+      alignItems:'center',
+      justifyContent:'center',
+      backgroundColor: '#EDE8E8'
+    },
+    modalView:{
+      backgroundColor:'#fff',
+      borderRadius:30,
+      padding: 15,
+      width: 300,
+      alignItems:'center'
     }
+
   })
 

@@ -6,6 +6,7 @@ import AdicionarPedido from './AdicionarPedido';
 import EditarPedidos from './EditarPedidos';
 import VisualizarPedidos from './VisualizarPedidos';
 import PesquisaPedido from './PesquisaPedido';
+import Pedidos from './Pedido';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { Button, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -40,6 +41,7 @@ export default function Rotas(){
     
             }}/>
             <Stack.Screen name='PesquisaPedido' component={PesquisaPedido}/>
+            <Stack.Screen name='Pedidos' component={Pedidos}/>
         </Stack.Navigator>
     )
 }
