@@ -41,7 +41,15 @@ export default function Rotas(){
     
             }}/>
             <Stack.Screen name='PesquisaPedido' component={PesquisaPedido}/>
-            <Stack.Screen name='Pedidos' component={Pedidos}/>
+            <Stack.Screen name='Pedidos' component={Pedidos} options={{headerTitle:'Dados do Pedido', headerStyle:{
+            backgroundColor:'#5CC6BA'},
+            headerTitleStyle:{color:'#fff'},
+            headerRight: () => (
+                <TouchableOpacity>
+                    <Icon name='edit' size={40} style={{color:'#fff'}}/>
+                </TouchableOpacity>
+              ),
+            }}/>
         </Stack.Navigator>
     )
 }

@@ -19,7 +19,7 @@ import TelaHome from './TelaHome';
 
 
 export default AdicionarPedido => {
-  const [pedido, setPedido] = useState(route.params ? route.params : {})
+  // const [pedido, setPedido] = useState(route.params ? route.params : {})
   
   // criando os estados
   const [nome, setNome] = useState(null)
