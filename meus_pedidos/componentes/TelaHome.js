@@ -86,21 +86,9 @@ export default function TelaHome({navigation}){
 
 
   const data = new Date();
-
-  function ver(item){
-    return (
-      <View>
-        {item.nome}
-      </View>
-    )
-    
-  }
-
- 
-  const [modalVisivel, setModalVisivel] = useState(false)
     return(
       <SafeAreaView style={estil.container}>
-        <StatusBar hidden={false} backgroundColor={'#fff'}/>
+        <StatusBar hidden={true} backgroundColor={'#fff'}/>
        <FlatList
         keyExtractor={(item) => item.id}
         style={estil.flatlist}

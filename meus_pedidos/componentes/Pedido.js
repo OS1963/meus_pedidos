@@ -1,6 +1,6 @@
 //Tela para inserir pedidos
 import React, {useState} from 'react';
-import {View, Text, Button, SafeAreaView, Image, StyleSheet, TouchableOpacity} from 'react-native'
+import {View, Text, Button, SafeAreaView, Image, StyleSheet, TouchableOpacity, Alert} from 'react-native'
 //Importando biblioteca para poder trabalhar com armazenamento local
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TelaHome from './TelaHome';
@@ -9,6 +9,34 @@ import {Entypo, Feather, AntDesign, MaterialCommunityIcons, SimpleLineIcons} fro
 import { Jost_200ExtraLight } from '@expo-google-fonts/jost';
 
 export default function Pedido({route, navigation}){
+  
+  //validando para saber se o usuário realmente quer exluir o pedido. Se sim, a função removerPedido é chamada, 
+  //caso contrário nada acontece
+  function remover(id){
+    Alert.alert('Excluir Pedido','Deseja excluir o pedido?',[
+      {text:'Sim',
+      onPress(){
+        removerPedido(id);
+        navigation.goBack();
+        console.warn('Pedido Removido com Sucesso')
+      }
+    },
+      {text:'Não'}
+    ])
+  }
+
+  //função para remover pedido:
+  async function removerPedido(id){
+    const response = await AsyncStorage.getItem('@meuspedidos:pedidos');
+    const dadosAnteriores = response ? JSON.parse(response) : [];
+
+    const pedidos = dadosAnteriores.filter((item) => item.id != id);
+    await AsyncStorage.setItem("@meuspedidos:pedidos", JSON.stringify(pedidos));
+    setPedidos(pedidos);
+    console.log()
+    
+  }
+
   const [pedido, setPedido] = useState(route.params ? route.params : {})
     return(
       <SafeAreaView style={estilo.container}>
@@ -43,12 +71,12 @@ export default function Pedido({route, navigation}){
 
         <View style={estilo.botoes}>
         <View>
-          <TouchableOpacity onPress={() => remover(item.id)}>
+          <TouchableOpacity onPress={() => remover(pedido.id)}>
             <AntDesign name='delete' size={50} color={'red'}/>
           </TouchableOpacity>
         </View>
                 
-        <View>
+        <View style={estilo.botao}>
           <TouchableOpacity onPress={() => navigation.navigate('Adicionar')}>
                <AntDesign name='edit' size={50} color={'#FF8000'}/>
             </TouchableOpacity>
@@ -84,7 +112,7 @@ export default function Pedido({route, navigation}){
       flexDirection: 'row',
     },
     botao:{
-
+        marginLeft:'30%'
     }
 
   })

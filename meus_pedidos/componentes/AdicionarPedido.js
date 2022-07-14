@@ -18,8 +18,8 @@ import TelaHome from './TelaHome';
 
 
 
-export default AdicionarPedido => {
-  // const [pedido, setPedido] = useState(route.params ? route.params : {})
+export default ({route, navigation}) => {
+  const [pedido, setPedido] = useState(route.params ? route.params : {})
   
   // criando os estados
   const [nome, setNome] = useState(null)
@@ -160,16 +160,15 @@ export default AdicionarPedido => {
 
 
         <View>
-          <Button 
-          title='Salvar'
-          onPress={() => {
+        <View style={estilo.botaoSalvar}>
+        <TouchableOpacity onPress={()=>{
             salvar()
-            // navigation.goBack()
-          }}/>
-
-          <TouchableOpacity>
+            navigation.navigate('TelaHome')
+          }}>
             <Botao_Salvar/>
           </TouchableOpacity>
+        </View>
+          
         </View>
         </ScrollView>
       </KeyboardAvoidingView>
@@ -192,5 +191,8 @@ export default AdicionarPedido => {
     },
     txt:{
       marginTop: 20,
+    },
+    botaoSalvar:{
+      alignItems:'center',
     }
   })

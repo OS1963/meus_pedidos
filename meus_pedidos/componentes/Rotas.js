@@ -2,6 +2,7 @@
 // Também é possível criar direto do APP, mas dessa maneira o código fica mais limpo
 import React from 'react';
 import TelaHome from './TelaHome';
+import {Image} from 'react-native'
 import AdicionarPedido from './AdicionarPedido';
 import EditarPedidos from './EditarPedidos';
 import VisualizarPedidos from './VisualizarPedidos';
@@ -19,29 +20,25 @@ const Stack = createNativeStackNavigator();
 export default function Rotas(){
     return(
         <Stack.Navigator initialRouteName='TelaHome'>
-            <Stack.Screen name='TelaHome' component={TelaHome} options={{headerTitle:'Lista de Pedidos', headerStyle:{
+            <Stack.Screen name='TelaHome' component={TelaHome} options={{headerTitle:'Meus Pedidos', headerStyle:{
             backgroundColor:'#5CC6BA'},
             headerTitleStyle:{color:'#fff'},
             headerRight: () => (
-                <TouchableOpacity>
-                    <Entypo name='magnifying-glass' size={35} style={{color:'#fff'}}/>
-                </TouchableOpacity>
+                <Image source={require('../assets/logo.png')}style={{width:40, height:40}}/>
               ),
     
             }} />
 
-            <Stack.Screen name='Adicionar' component={AdicionarPedido} options={{headerTitle:'Adicionar Pedidos', headerStyle:{
+            <Stack.Screen name='Adicionar' component={AdicionarPedido} options={{headerTitle:'Adicionar Pedidos',  headerTintColor:'#DFD5D5', headerStyle:{
             backgroundColor:'#5CC6BA'},
             headerTitleStyle:{color:'#fff'},
             headerRight: () => (
-                <TouchableOpacity>
-                    <Icon name='check' size={45} style={{color:'#fff'}}/>
-                </TouchableOpacity>
+                <Image source={require('../assets/logo.png')}style={{width:40, height:40}}/>
               ),
     
             }}/>
             <Stack.Screen name='PesquisaPedido' component={PesquisaPedido}/>
-            <Stack.Screen name='Pedidos' component={Pedidos} options={{headerTitle:'Dados do Pedido', headerStyle:{
+            <Stack.Screen name='Pedidos' component={Pedidos} options={{headerTitle:'Dados do Pedido', headerTintColor:'#DFD5D5', headerStyle:{
             backgroundColor:'#5CC6BA'},
             headerTitleStyle:{color:'#fff'},
             headerRight: () => (

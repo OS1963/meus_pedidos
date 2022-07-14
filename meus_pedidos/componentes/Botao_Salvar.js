@@ -5,29 +5,30 @@ import Entypo from 'react-native-vector-icons/Entypo'
 
 export default function Adicionar(){
     return(
-        <View>
-            <Entypo style={estilo.icone} name='check' size={50} color={'#5CC6BA'}
-            />
+        <View style={estilo.container}>
             <Text style={estilo.texto}>SALVAR</Text>
-            
+            <Entypo style={estilo.icone} name='check' size={50} color={'#F1EBEB'}
+            />
         </View>
     )
 }
 
 const estilo = StyleSheet.create({
     container:{
-        width: 80, 
-        height: 80,
-        borderRadius:40,
+        flexDirection:'row',
+        width: '50%', 
+        height: 60,
+        borderRadius:30,
         backgroundColor:'#5CC6BA',
         justifyContent:'center',
         alignItems:'center',
-        // justifyContent:'space-between'
-        borderColor:'red',
+        justifyContent:'space-evenly',
+        
     },
 
     texto:{
-        fontSize:10,
+        fontSize:25,
+        fontWeight:'bold',
         color: '#fff',
         
     },
