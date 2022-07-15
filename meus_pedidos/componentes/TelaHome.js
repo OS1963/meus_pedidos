@@ -124,7 +124,7 @@ export default function TelaHome({navigation}){
                 </View>
                 
                 <View style={estil.botao}>
-                <TouchableOpacity onPress={() => navigation.navigate('Adicionar', item)}>
+                <TouchableOpacity onPress={() => navigation.navigate('EditarPedidos', item)}>
                   <Icon name='edit' size={30} color={'#FF8000'}/>
                 </TouchableOpacity>
                 </View>

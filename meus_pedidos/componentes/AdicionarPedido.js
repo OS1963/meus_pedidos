@@ -13,12 +13,8 @@ import MaskInput from 'react-native-mask-input';
 import Botao_Salvar from './Botao_Salvar'
 import TelaHome from './TelaHome';
 
-
-
-
-
-
 export default ({route, navigation}) => {
+  // atribuindo os valores armazenados localmente e pegando seus parâmetros
   const [pedido, setPedido] = useState(route.params ? route.params : {})
   
   // criando os estados
@@ -163,7 +159,7 @@ export default ({route, navigation}) => {
         <View style={estilo.botaoSalvar}>
         <TouchableOpacity onPress={()=>{
             salvar()
-            navigation.navigate('TelaHome')
+            navigation.goBack()
           }}>
             <Botao_Salvar/>
           </TouchableOpacity>

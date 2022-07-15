@@ -47,6 +47,8 @@ export default function Rotas(){
                 </TouchableOpacity>
               ),
             }}/>
+
+            <Stack.Screen name='EditarPedidos' component={EditarPedidos}/>
         </Stack.Navigator>
     )
 }
